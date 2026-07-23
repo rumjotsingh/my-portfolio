@@ -10,7 +10,7 @@ import { FadeUp, StaggerContainer, StaggerItem } from "@/components/shared/fade-
 import { SectionHeader } from "@/components/shared/section-header";
 import { Badge } from "@/components/ui/badge";
 import { type Project, projects } from "@/data/portfolio";
-import { getProjectIcon } from "@/lib/project-icons";
+import { ProjectIcon } from "@/lib/project-icons";
 import { cn } from "@/lib/utils";
 
 const statusColors: Record<string, string> = {
@@ -21,13 +21,13 @@ const statusColors: Record<string, string> = {
 };
 
 function ProjectVisual({ project, className }: { project: Project; className?: string }) {
-  const Icon = getProjectIcon(project.icon);
+  const previewImage = project.image ?? project.images?.[0];
 
-  if (project.image) {
+  if (previewImage) {
     return (
-      <div className={cn("relative aspect-[16/10] w-full overflow-hidden bg-muted", className)}>
+      <div className={cn("relative aspect-16/10 w-full overflow-hidden bg-muted", className)}>
         <Image
-          src={project.image}
+          src={previewImage}
           alt={`${project.name} screenshot`}
           fill
           className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
@@ -40,12 +40,12 @@ function ProjectVisual({ project, className }: { project: Project; className?: s
   return (
     <div
       className={cn(
-        "flex aspect-[16/10] w-full items-center justify-center bg-gradient-to-br from-sky-50 to-slate-100",
+        "flex aspect-16/10 w-full items-center justify-center bg-linear-to-br from-sky-50 to-slate-100",
         className
       )}
     >
       <div className="flex size-16 items-center justify-center rounded-2xl bg-white text-primary shadow-premium">
-        <Icon className="size-8" strokeWidth={1.5} />
+        <ProjectIcon icon={project.icon} className="size-8" strokeWidth={1.5} />
       </div>
     </div>
   );
@@ -61,7 +61,6 @@ function FeaturedProjectCard({
   onOpen: (p: Project) => void;
 }) {
   const isReversed = index % 2 === 1;
-  const Icon = getProjectIcon(project.icon);
 
   return (
     <FadeUp delay={index * 0.1}>
@@ -89,7 +88,7 @@ function FeaturedProjectCard({
           </p>
           <div className="mt-2 flex items-center gap-3">
             <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <Icon className="size-5" strokeWidth={1.5} />
+              <ProjectIcon icon={project.icon} className="size-5" strokeWidth={1.5} />
             </div>
             <div>
               <h3 className="font-heading text-2xl font-semibold text-foreground sm:text-3xl">
@@ -187,8 +186,6 @@ function ProjectGridCard({
   project: Project;
   onOpen: (p: Project) => void;
 }) {
-  const Icon = getProjectIcon(project.icon);
-
   return (
     <StaggerItem>
       <motion.button
@@ -200,7 +197,7 @@ function ProjectGridCard({
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-              <Icon className="size-5" strokeWidth={1.5} />
+              <ProjectIcon icon={project.icon} className="size-5" strokeWidth={1.5} />
             </div>
             <h3 className="font-heading text-base font-semibold text-foreground group-hover:text-primary">
               {project.name}
@@ -287,7 +284,7 @@ export function Projects() {
         <SectionHeader
           label="Projects"
           title="Complete project showcase"
-          description="From production CRM platforms to full-stack marketplaces — 11+ real projects with live demos and case studies."
+          description="From production CRM platforms to full-stack marketplaces — 12+ real projects with live demos and case studies."
         />
 
         <div className="mb-20">

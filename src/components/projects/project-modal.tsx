@@ -11,7 +11,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { Project } from "@/data/portfolio";
-import { getProjectIcon } from "@/lib/project-icons";
+import { ProjectIcon } from "@/lib/project-icons";
 import { cn } from "@/lib/utils";
 
 interface ProjectModalProps {
@@ -38,8 +38,11 @@ function SectionBlock({ title, children }: { title: string; children: React.Reac
 
 export function ProjectModal({ project, open, onOpenChange }: ProjectModalProps) {
   if (!project) return null;
-
-  const Icon = getProjectIcon(project.icon);
+  const galleryImages = project.images?.length
+    ? project.images
+    : project.image
+      ? [project.image]
+      : [];
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -47,23 +50,33 @@ export function ProjectModal({ project, open, onOpenChange }: ProjectModalProps)
         className="max-h-[90vh] overflow-y-auto rounded-[20px] border-border p-0 sm:max-w-3xl"
         showCloseButton
       >
-        {project.image && project.featured && (
-          <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border">
-            <Image
-              src={project.image}
-              alt={`${project.name} screenshot`}
-              fill
-              className="object-cover object-top"
-              sizes="768px"
-            />
+        {galleryImages.length > 0 && (
+          <div className="grid gap-0 border-b border-border sm:grid-cols-2">
+            {galleryImages.map((image, index) => (
+              <div
+                key={image}
+                className={cn(
+                  "relative aspect-video w-full overflow-hidden",
+                  index === 0 && galleryImages.length === 1 && "sm:col-span-2"
+                )}
+              >
+                <Image
+                  src={image}
+                  alt={`${project.name} screenshot ${index + 1}`}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                />
+              </div>
+            ))}
           </div>
         )}
 
-        <div className="border-b border-border bg-gradient-to-br from-sky-50 to-white p-6 sm:p-8">
+        <div className="border-b border-border bg-linear-to-br from-sky-50 to-white p-6 sm:p-8">
           <DialogHeader>
             <div className="flex flex-wrap items-center gap-2">
               <div className="flex size-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Icon className="size-5" strokeWidth={1.5} />
+                <ProjectIcon icon={project.icon} className="size-5" strokeWidth={1.5} />
               </div>
               <Badge
                 className={cn(

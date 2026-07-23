@@ -24,14 +24,16 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.siteUrl),
   title: {
-    default: `${siteConfig.name} | ${siteConfig.title}`,
+    default: `${siteConfig.name} | rumjot.me`,
     template: `%s | ${siteConfig.name}`,
   },
   description:
-    "Full-Stack Developer and AI Builder. 12+ projects, production CRM serving 1000+ customers. React, Next.js, TypeScript, Node.js, OpenAI.",
+    "Rumjot Singh's portfolio at rumjot.me. Full-Stack Developer and AI Builder with production experience in React, Next.js, TypeScript, Node.js, and scalable web apps.",
   keywords: [
     "Rumjot Singh",
+    "rumjot.me",
     "Software Engineer",
     "Full Stack Developer",
     "AI Builder",
@@ -47,23 +49,44 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
+  alternates: {
+    canonical: "/",
+  },
+  applicationName: "Rumjot Singh Portfolio",
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: `${siteConfig.name} | ${siteConfig.title}`,
+    url: "/",
+    title: `${siteConfig.name} | rumjot.me`,
     description:
-      "Full-Stack Developer building AI-powered products and scalable SaaS platforms. 12+ projects, 1000+ customers served.",
+      "Rumjot Singh's portfolio at rumjot.me. Full-Stack Developer building AI-powered products and scalable SaaS platforms.",
     siteName: siteConfig.name,
+    images: [
+      {
+        url: "/images/profile.png",
+        width: 1200,
+        height: 1200,
+        alt: `${siteConfig.name} portfolio preview`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | ${siteConfig.title}`,
+    title: `${siteConfig.name} | rumjot.me`,
     description:
-      "Full-Stack Developer building AI-powered products and scalable SaaS platforms. 12+ projects, 1000+ customers served.",
+      "Rumjot Singh's portfolio at rumjot.me. Full-Stack Developer building AI-powered products and scalable SaaS platforms.",
+    images: ["/images/profile.png"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -87,6 +110,7 @@ export default function RootLayout({
               name: siteConfig.name,
               jobTitle: "Full Stack Developer",
               description: siteConfig.tagline,
+              url: siteConfig.siteUrl,
               email: siteConfig.email,
               address: {
                 "@type": "PostalAddress",
@@ -94,7 +118,6 @@ export default function RootLayout({
                 addressCountry: "IN",
               },
               alumniOf: siteConfig.education.institution,
-              url: siteConfig.github,
               sameAs: [
                 siteConfig.github,
                 siteConfig.linkedin,

@@ -16,6 +16,7 @@ export interface Project {
   challenges: string[];
   lessons: string[];
   image?: string;
+  images?: string[];
   liveUrl?: string;
   githubUrl?: string;
   status: ProjectStatus;
@@ -27,12 +28,13 @@ export const siteConfig = {
   title: "Frontend Engineer • Full Stack Developer • Product Builder",
   tagline:
     "Turning ideas into real web products — from polished interfaces to scalable full-stack applications used by real customers.",
+  siteUrl: "https://rumjot.me",
   location: "Haryana, India",
   email: "rumjotsingh12345@gmail.com",
   linkedin: "https://www.linkedin.com/in/rumjot-singh-747129281/",
   github: "https://github.com/rumjotsingh",
   leetcode: "https://leetcode.com/u/Rumjot/",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/rumjot.pdf",
   resumeFileName: "Rumjot_Singh_Resume.pdf",
   education: {
     degree: "B.Tech Computer Science Engineering",
@@ -107,7 +109,7 @@ export const highlightCards = [
 ];
 
 export const stats = [
-  { label: "Projects Built", value: "11+", numeric: 11 },
+  { label: "Projects Built", value: "12+", numeric: 12 },
   { label: "Customers Served", value: "1000+", numeric: 1000 },
   { label: "Bookings Managed", value: "1500+", numeric: 1500 },
   { label: "LeetCode Solved", value: "500+", numeric: 500 },
@@ -266,7 +268,7 @@ export const projects: Project[] = [
       "Session management is critical for user-facing apps",
     ],
     image: "/images/wandurlust-v2.png",
-    liveUrl: "https://wandurlust-thus.onrender.com",
+    liveUrl: "https://wandurlust.rumjot.me/",
     githubUrl: "https://github.com/rumjotsingh/WandurLust",
     status: "Deployed",
     featured: true,
@@ -430,6 +432,49 @@ export const projects: Project[] = [
     featured: false,
   },
   {
+    id: "code-arena",
+    name: "CodeArena",
+    icon: "code",
+    category: "Coding Platform",
+    shortDescription: "LeetCode-style coding platform with judge engine and dashboards",
+    description:
+      "A LeetCode-inspired coding platform with Google login, problem playlists, leaderboard rankings, dashboards, and an online judging workflow built around an open-source code box engine.",
+    problem:
+      "Competitive coding practice platforms need a focused editor experience, user accounts, and progress visibility that keeps learners engaged.",
+    solution:
+      "Built a LeetCode-style product with Google authentication, curated playlists, leaderboard tracking, and a dashboard-first learning flow around the online judge.",
+    features: [
+      "Google login",
+      "Online code editor",
+      "Open-source judge engine integration",
+      "Problem playlists",
+      "Leaderboard rankings",
+      "User dashboard",
+    ],
+    tech: ["Next.js", "TypeScript", "Google Auth", "Monaco Editor", "Judge Engine"],
+    impact: [
+      "LeetCode-style practice experience",
+      "Centralized coding dashboard",
+      "Structured playlist-based learning",
+    ],
+    architecture:
+      "Next.js application with authenticated user flows, playlist-driven problem organization, a browser-based code editor, and a judge integration layer for code evaluation.",
+    challenges: [
+      "Designing a smooth coding workflow inside the browser",
+      "Keeping playlists and leaderboard data in sync",
+      "Balancing editor usability with judge-engine constraints",
+    ],
+    lessons: [
+      "Developer platforms succeed when the editing loop feels fast",
+      "Progress visibility makes practice platforms more sticky",
+    ],
+    image: "/images/codearena-1.png",
+    images: ["/images/codearena-1.png", "/images/codearena-2.png"],
+    liveUrl: "https://leetcode-frontend-delta.vercel.app/",
+    status: "Deployed",
+    featured: true,
+  },
+  {
     id: "question-tracker",
     name: "Question Tracker",
     icon: "list-checks",
@@ -467,7 +512,7 @@ export const experience = [
     company: "Independent",
     period: "2023 – Present",
     description:
-      "Built 11+ production and deployed projects spanning marketplaces, SaaS platforms, e-commerce, and developer tools. Shipped applications serving real users with live demos on Vercel and Render.",
+      "Built 12+ production and deployed projects spanning marketplaces, SaaS platforms, e-commerce, and developer tools. Shipped applications serving real users with live demos on Vercel and Render.",
     tags: ["React", "Node.js", "MongoDB", "Next.js", "TypeScript"],
   },
 ];
@@ -524,7 +569,7 @@ export const professionalSnapshot = {
     "API Development Experience",
   ],
   metrics: [
-    { label: "Projects Built", value: "11+" },
+    { label: "Projects Built", value: "12+" },
     { label: "Tech Stack", value: "15+" },
     { label: "LeetCode Solved", value: "500+" },
     { label: "Deployment", value: "Production Ready" },

@@ -14,6 +14,7 @@ import {
   Video,
   type LucideIcon,
 } from "lucide-react";
+import type { ComponentProps } from "react";
 
 export const projectIconMap: Record<string, LucideIcon> = {
   "layout-dashboard": LayoutDashboard,
@@ -33,4 +34,14 @@ export const projectIconMap: Record<string, LucideIcon> = {
 
 export function getProjectIcon(icon: string): LucideIcon {
   return projectIconMap[icon] ?? Code2;
+}
+
+type ProjectIconProps = ComponentProps<LucideIcon> & {
+  icon: string;
+};
+
+export function ProjectIcon({ icon, ...props }: ProjectIconProps) {
+  const Icon = projectIconMap[icon] ?? Code2;
+
+  return <Icon {...props} />;
 }
